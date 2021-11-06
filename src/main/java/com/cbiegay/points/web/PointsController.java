@@ -28,19 +28,25 @@ public class PointsController {
 
     private final PointsService pointsService;
 
-    public PointsController(DefaultPointsService pointsService) {
+    public PointsController(final DefaultPointsService pointsService) {
         this.pointsService = Objects.requireNonNull(pointsService);
     }
 
+    /**
+     * Endpoint for adding a transaction.
+     */
     @PostMapping(path="/transaction")
-    public @ResponseBody void addTransaction(@RequestBody Transaction transaction) {
+    public @ResponseBody void addTransaction(@RequestBody final Transaction transaction) {
         pointsService.addTransaction(transaction);
     }
 
+    /**
+     * Endpoint for spending points.
+     */
     @PostMapping(path="/spend")
-    public ResponseEntity spend(@RequestBody PointSpend pointSpend) {
+    public ResponseEntity spend(@RequestBody final PointSpend pointSpend) {
         try {
-            List<PayerPointDelta> response = pointsService.spend(pointSpend.getPoints());
+            final List<PayerPointDelta> response = pointsService.spend(pointSpend.getPoints());
             return ResponseEntity.ok().body(response);
         } catch (InsufficientPointsException e) {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body("Insufficient points");
@@ -49,6 +55,9 @@ public class PointsController {
         }
     }
 
+    /**
+     * Endpoint for retrieving the current point balances of all payers.
+     */
     @GetMapping(path="/balances")
     public @ResponseBody Map<String, Integer> getBalances() {
         return pointsService.getBalances();

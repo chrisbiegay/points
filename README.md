@@ -65,7 +65,7 @@ Open a terminal to the project root, make sure Java 11 is on the execution path 
 A full report can be found in `build/reports/tests/test/index.html`.
 
 ### Option 2: IntelliJ
-With the project open in IntelliJ, right-click on `src/test` and choose the option to run the tests.
+With the project open in IntelliJ, right-click on the `src/test` folder and choose the option to run the tests.
 
 ### Option 3: Docker
 Open a terminal to the project root and run:
