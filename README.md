@@ -47,7 +47,7 @@ curl -i \
 ```
 curl -i \
   -H "Content-Type:application/json" \
-  -X POST --data '{ "points": 5000 }' \
+  -X POST --data '{ "points": 100 }' \
   http://localhost:8080/points/spend
 ```
 
